@@ -35,11 +35,9 @@
       }
     },
     mounted: function() {
-      this.$nextTick(() => {
-        if (!this.swiper && typeof global.window != 'undefined') {
-          this.swiper = new Swiper(this.$el, this.options)
-        }
-      })
+      if (!this.swiper && typeof global.window != 'undefined') {
+        this.swiper = new Swiper(this.$el, this.options)
+      }
     },
     updated: function(){
       this.swiper.update()
