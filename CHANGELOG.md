@@ -1,11 +1,6 @@
 
 ## CHANGELOG
 
-### v3.0.7
-
-1. remove reloop function
-2. update ssr example
-
 ### v3.0.5
 
 1. update swiper version to v4.0.7

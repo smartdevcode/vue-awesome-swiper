@@ -55,6 +55,10 @@ const swiperDirective = globalOptions => {
       const swiper = vnode.context[instanceName]
       if (swiper) {
         swiper.update && swiper.update(true)
+        swiper.updatePagination && swiper.updatePagination(true)
+        if (binding.value.loop) {
+          swiper.reLoop && swiper.reLoop()
+        }
       }
     },
 

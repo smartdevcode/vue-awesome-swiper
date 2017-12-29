@@ -24,6 +24,8 @@
           slidesPerView: 'auto',
           centeredSlides: true,
           spaceBetween: 30,
+          wrapperClass: 'my-wrapper',
+          slideClass: 'my-slide',
           pagination: {
             el: '.swiper-pagination',
             dynamicBullets: true
