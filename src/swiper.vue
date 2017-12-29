@@ -41,10 +41,6 @@
     })
   }
 
-  const DEFAULT_EVENTS = [
-    "slideChange"
-  ]
-
   // export
   export default {
     name: 'swiper',
@@ -68,15 +64,6 @@
       mountInstance() {
         const swiperOptions = Object.assign({}, this.globalOptions, this.options)
         this.swiper = new Swiper(this.$el, swiperOptions)
-        this.bindEvents()
-      },
-      bindEvents() {
-        const vm = this
-        DEFAULT_EVENTS.forEach(eventName => {
-          this.swiper.on(eventName, function() {
-            vm.$emit(eventName, this, ...arguments)
-          })
-        })
       }
     },
     data() {
