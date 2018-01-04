@@ -40,36 +40,6 @@
       configurable: true
     })
   }
-  // as of swiper 4.0.7
-  // http://idangero.us/swiper/api/#events
-  const DEFAULT_EVENTS = [
-    'beforeDestroy',
-    'slideChange',
-    'slideChangeTransitionStart',
-    'slideChangeTransitionEnd',
-    'slideNextTransitionStart',
-    'slideNextTransitionEnd',
-    'slidePrevTransitionStart',
-    'slidePrevTransitionEnd',
-    'transitionStart',
-    'transitionEnd',
-    'touchStart',
-    'touchMove',
-    'touchMoveOpposite',
-    'sliderMove',
-    'touchEnd',
-    'click',
-    'tap',
-    'doubleTap',
-    'imagesReady',
-    'progress',
-    'reachBeginning',
-    'reachEnd',
-    'fromEdge',
-    'setTranslate',
-    'setTransition',
-    'resize'
-  ]
 
   // export
   export default {
@@ -85,29 +55,9 @@
         default: () => ({})
       }
     },
-    methods: {
-      update() {
-        if (this.swiper) {
-          this.swiper.update && this.swiper.update()
-        }
-      },
-      mountInstance() {
-        const swiperOptions = Object.assign({}, this.globalOptions, this.options)
-        this.swiper = new Swiper(this.$el, swiperOptions)
-        this.bindEvents()
-      },
-      bindEvents() {
-        const vm = this
-        DEFAULT_EVENTS.forEach(eventName => {
-          this.swiper.on(eventName, function() {
-            // NOTE - `this` is the swiper instance
-            vm.$emit(eventName, this, ...arguments)
-          })
-        })
-      }
-    },
     data() {
       return {
+        swiper: null,
         classes: {
           wrapperClass: 'swiper-wrapper'
         }
@@ -142,6 +92,20 @@
       if (this.swiper) {
         this.swiper.destroy && this.swiper.destroy()
         delete this.swiper
+      }
+    },
+    methods: {
+      update() {
+        if (this.swiper) {
+          this.swiper.update && this.swiper.update()
+          this.swiper.navigation && this.swiper.navigation.update()
+          this.swiper.pagination && this.swiper.pagination.render(true)
+          this.swiper.pagination && this.swiper.pagination.update()
+        }
+      },
+      mountInstance() {
+        const swiperOptions = Object.assign({}, this.globalOptions, this.options)
+        this.swiper = new Swiper(this.$el, swiperOptions)
       }
     }
   }
